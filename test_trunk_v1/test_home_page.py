@@ -52,7 +52,6 @@ def test_back_to_home_page(common_setup):
         url = 'https://www.redbull.com/at-de/' + item
         driver.get(url)
         main_logo = driver.find_element(By.CSS_SELECTOR, '[alt="Red Bull Logo"]')
-        driver.implicitly_wait(5)
         main_logo.click()
         current_url = driver.current_url
         assert current_url == "https://www.redbull.com/at-de/"
@@ -62,7 +61,7 @@ def test_back_to_home_page(common_setup):
 def test_back_to_home_page_from_live(common_setup):
     driver = common_setup
     driver.get("https://www.redbull.com/at-de/live-events")
-    hover_element = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div/div[1]/button')
+    hover_element = driver.find_element(By.CSS_SELECTOR, '#page-main button.global-header__content')
     hover_element.click()
     main_logo = driver.find_element(By.CSS_SELECTOR, '[alt="Red Bull Logo"]')
     main_logo.click()

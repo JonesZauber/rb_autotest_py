@@ -8,12 +8,12 @@ import pytest
 @pytest.mark.account
 def test_enter_account_settings(enter_profile):
     driver = enter_profile
-    account_icon = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div'
-                                                 '/div/header/div[1]/div[2]/div[1]/div/button/div/div')
+    account_icon = driver.find_element(By.XPATH, '//div[@class="user-icon__user-wrapper"]')
     account_icon.click()
+    time.sleep(5)
+    settings_button = driver.find_element(By.XPATH,
+                                          '//div[@class="user-preferences__actions"]/a[contains(@class, "settings")]')
     driver.implicitly_wait(5)
-    settings_button = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div'
-                                                    '/div/div/header/div[1]/div[2]/div[2]/div/div/div/div[2]/a[2]')
     settings_button.click()
     partial_url = 'https://www.redbull.com/account/profile/settings'
     assert partial_url in driver.current_url
@@ -23,14 +23,13 @@ def test_enter_account_settings(enter_profile):
 @pytest.mark.account
 def test_name_email_in_profile_serrings(enter_profile):
     driver = enter_profile
-    account_icon = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div'
-                                                 '/div/header/div[1]/div[2]/div[1]/div/button/div/div')
+    account_icon = driver.find_element(By.XPATH, '//div[@class="user-icon__user-wrapper"]')
     account_icon.click()
     driver.implicitly_wait(5)
-    settings_button = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div'
-                                                    '/div/div/header/div[1]/div[2]/div[2]/div/div/div/div[2]/a[2]')
+    settings_button = driver.find_element(By.XPATH,
+                                          '//div[@class="user-preferences__actions"]/a[contains(@class, "settings")]')
     settings_button.click()
-    user_name = driver.find_element(By.XPATH, '//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div[1]/div[2]')
+    user_name = driver.find_element(By.XPATH, '//div[@class="row__content"]')
     assert user_name.text == 'Jones Zauber'
     user_mail = driver.find_element(By.XPATH, '//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]')
     assert user_mail.text == 'joneszauber@gmail.com'
@@ -41,12 +40,11 @@ def test_name_email_in_profile_serrings(enter_profile):
 @pytest.mark.account
 def test_direct_marketing_consent(enter_profile):
     driver = enter_profile
-    account_icon = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div'
-                                                 '/div/header/div[1]/div[2]/div[1]/div/button/div/div')
+    account_icon = driver.find_element(By.XPATH, '//div[@class="user-icon__user-wrapper"]')
     account_icon.click()
     driver.implicitly_wait(5)
-    settings_button = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div'
-                                                    '/div/div/header/div[1]/div[2]/div[2]/div/div/div/div[2]/a[2]')
+    settings_button = driver.find_element(By.XPATH,
+                                          '//div[@class="user-preferences__actions"]/a[contains(@class, "settings")]')
     settings_button.click()
     mark_cons = driver.find_elements(By.XPATH, '//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div[5]/'
                                                               'div[2]/label/span')
@@ -66,18 +64,19 @@ def test_direct_marketing_consent(enter_profile):
 @pytest.mark.account
 def test_checkbox_direct_marketing_consent(enter_profile):
     driver = enter_profile
-    account_icon = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div'
-                                                 '/div/header/div[1]/div[2]/div[1]/div/button/div/div')
+    account_icon = driver.find_element(By.XPATH, '//div[@class="user-icon__user-wrapper"]')
     account_icon.click()
     driver.implicitly_wait(5)
-    settings_button = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div'
-                                                    '/div/div/header/div[1]/div[2]/div[2]/div/div/div/div[2]/a[2]')
+    settings_button = driver.find_element(By.XPATH,
+                                          '//div[@class="user-preferences__actions"]/a[contains(@class, "settings")]')
     settings_button.click()
-    checkbox = driver.find_element(By.XPATH, '//*[@id="https://policies.redbull.com/policies/RedBull.com_Austria/202112231437/de/privacy.html"]')
+    checkbox = driver.find_element(By.XPATH, '//*[@id="https://policies.redbull.com/policies/RedBull.com_Austria/'
+                                             '202112231437/de/privacy.html"]')
     assert not checkbox.is_selected()
     driver.implicitly_wait(5)
 
-    checkbox = driver.find_element(By.XPATH, '//*[@id="https://policies.redbull.com/policies/RedBull.com_Austria/202112231437/de/privacy.html"]')
+    checkbox = driver.find_element(By.XPATH, '//*[@id="https://policies.redbull.com/policies/RedBull.com_Austria/'
+                                             '202112231437/de/privacy.html"]')
     checkbox.click()
     driver.implicitly_wait(5)
     time.sleep(5)
@@ -87,12 +86,11 @@ def test_checkbox_direct_marketing_consent(enter_profile):
 @pytest.mark.account
 def test_world_of_redbull_link(enter_profile):
     driver = enter_profile
-    account_icon = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div'
-                                                 '/div/header/div[1]/div[2]/div[1]/div/button/div/div')
+    account_icon = driver.find_element(By.XPATH, '//div[@class="user-icon__user-wrapper"]')
     account_icon.click()
     driver.implicitly_wait(5)
-    settings_button = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div'
-                                                    '/div/div/header/div[1]/div[2]/div[2]/div/div/div/div[2]/a[2]')
+    settings_button = driver.find_element(By.XPATH,
+                                          '//div[@class="user-preferences__actions"]/a[contains(@class, "settings")]')
     settings_button.click()
     world_of_redbull = driver.find_element(By.LINK_TEXT, 'World of Red Bull')
     world_of_redbull.click()
@@ -105,14 +103,14 @@ def test_world_of_redbull_link(enter_profile):
 @pytest.mark.account
 def test_privacy_policy_link(enter_profile):
     driver = enter_profile
-    account_icon = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div'
-                                                 '/div/header/div[1]/div[2]/div[1]/div/button/div/div')
+    account_icon = driver.find_element(By.XPATH, '//div[@class="user-icon__user-wrapper"]')
     account_icon.click()
     driver.implicitly_wait(5)
-    settings_button = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div'
-                                                    '/div/div/header/div[1]/div[2]/div[2]/div/div/div/div[2]/a[2]')
+    settings_button = driver.find_element(By.XPATH,
+                                          '//div[@class="user-preferences__actions"]/a[contains(@class, "settings")]')
     settings_button.click()
-    privacy_policy = driver.find_element(By.XPATH, '//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div[5]/div[2]/label/span/a[2]')
+    privacy_policy = driver.find_element(By.XPATH,
+                                         '//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div[5]/div[2]/label/span/a[2]')
     privacy_policy.click()
     driver.switch_to.window(driver.window_handles[1])
     driver.implicitly_wait(5)
@@ -122,14 +120,13 @@ def test_privacy_policy_link(enter_profile):
 @pytest.mark.account
 def test_residence_list(enter_profile):
     driver = enter_profile
-    account_icon = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div/div'
-                                                 '/div/header/div[1]/div[2]/div[1]/div/button/div/div')
+    account_icon = driver.find_element(By.XPATH, '//div[@class="user-icon__user-wrapper"]')
     account_icon.click()
     driver.implicitly_wait(5)
-    settings_button = driver.find_element(By.XPATH, '//*[@id="page-main"]/div/div[3]/div/div/div/div/div/div[1]/div'
-                                                    '/div/div/header/div[1]/div[2]/div[2]/div/div/div/div[2]/a[2]')
+    settings_button = driver.find_element(By.XPATH,
+                                          '//div[@class="user-preferences__actions"]/a[contains(@class, "settings")]')
     settings_button.click()
-    edit = driver.find_element(By.XPATH, '//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div[4]/div[1]/span[2]')
+    edit = driver.find_element(By.XPATH, '//div[@class="sidebar-view__inner"]/div[4]//span[@class="row__action"]')
     edit.click()
 
     dropdown = Select(driver.find_element(By.XPATH, '//*[@id="react-select-4-input"]'))
