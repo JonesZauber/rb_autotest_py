@@ -8,8 +8,8 @@ import pytest
 
 
 @pytest.mark.login
-def test_login_with_email(common_setup):
-    driver = common_setup
+def test_login_with_email(open_home_page):
+    driver = open_home_page
     login_icon = driver.find_element(By.XPATH, '//button[@class="user-icon"]')
     login_icon.click()
     driver.implicitly_wait(5)
@@ -29,8 +29,8 @@ def test_login_with_email(common_setup):
 
 
 @pytest.mark.login
-def test_login_with_gmail(common_setup):
-    driver = common_setup
+def test_login_with_gmail(open_home_page):
+    driver = open_home_page
     login_icon = driver.find_element(By.XPATH, '//button[@class="user-icon"]')
     login_icon.click()
     driver.implicitly_wait(5)
@@ -52,8 +52,8 @@ def test_login_with_gmail(common_setup):
 
 
 @pytest.mark.login
-def test_login_with_fb(common_setup):
-    driver = common_setup
+def test_login_with_fb(open_home_page):
+    driver = open_home_page
     login_icon = driver.find_element(By.XPATH, '//button[@class="user-icon"]')
     login_icon.click()
     driver.implicitly_wait(5)
@@ -82,8 +82,8 @@ def test_login_with_fb(common_setup):
 emails = ['test@test.co', 'test@test.com', 'test@test.comm']
 @pytest.mark.login
 @pytest.mark.parametrize('emails', emails)
-def test_submit_email_button_enabled(common_setup, emails):
-    driver = common_setup
+def test_submit_email_button_enabled(open_home_page, emails):
+    driver = open_home_page
 
     login_icon = driver.find_element(By.XPATH, '//button[@class="user-icon"]')
     login_icon.click()
@@ -100,8 +100,8 @@ def test_submit_email_button_enabled(common_setup, emails):
 incorrect_emails = ['', 'test', 'test@', 'test@test', 'test@test.', 'test@test.c']
 @pytest.mark.login
 @pytest.mark.parametrize('incorrect_emails', incorrect_emails)
-def test_submit_email_button_disabled(common_setup, incorrect_emails):
-    driver = common_setup
+def test_submit_email_button_disabled(open_home_page, incorrect_emails):
+    driver = open_home_page
     login_icon = driver.find_element(By.XPATH, '//button[@class="user-icon"]')
     login_icon.click()
     driver.implicitly_wait(5)
@@ -116,8 +116,8 @@ def test_submit_email_button_disabled(common_setup, incorrect_emails):
 
 
 @pytest.mark.login
-def test_submit_pass_button_disabled(common_setup):
-    driver = common_setup
+def test_submit_pass_button_disabled(open_home_page):
+    driver = open_home_page
     login_icon = driver.find_element(By.XPATH, '//button[@class="user-icon"]')
     login_icon.click()
     driver.implicitly_wait(5)

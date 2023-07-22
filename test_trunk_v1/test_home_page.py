@@ -5,15 +5,15 @@ import pytest
 
 
 @pytest.mark.home
-def test_load_home_page(common_setup):
-    driver = common_setup
+def test_load_home_page(open_home_page):
+    driver = open_home_page
     current_url = driver.current_url
     assert current_url == "https://www.redbull.com/at-de/"
 
 
 @pytest.mark.home
-def test_load_home_page_by_press_main_logo(common_setup):
-    driver = common_setup
+def test_load_home_page_by_press_main_logo(open_home_page):
+    driver = open_home_page
     main_logo = driver.find_element(By.CLASS_NAME, 'menu-header__logo')
     driver.implicitly_wait(5)
     main_logo.click()
@@ -22,8 +22,8 @@ def test_load_home_page_by_press_main_logo(common_setup):
 
 
 @pytest.mark.home
-def test_main_page_title(common_setup):
-    driver = common_setup
+def test_main_page_title(open_home_page):
+    driver = open_home_page
     driver.implicitly_wait(5)
     title = driver.title
     assert title == 'Red Bull verleiht Flügel - RedBull.com'
@@ -45,8 +45,8 @@ def test_accept_cookies():
 
 
 @pytest.mark.home
-def test_back_to_home_page(common_setup):
-    driver = common_setup
+def test_back_to_home_page(open_home_page):
+    driver = open_home_page
     header_navigation = ['events', 'athletes', 'energydrink']
     for item in header_navigation:
         url = 'https://www.redbull.com/at-de/' + item
@@ -58,8 +58,8 @@ def test_back_to_home_page(common_setup):
 
 
 @pytest.mark.home
-def test_back_to_home_page_from_live(common_setup):
-    driver = common_setup
+def test_back_to_home_page_from_live(open_home_page):
+    driver = open_home_page
     driver.get("https://www.redbull.com/at-de/live-events")
     hover_element = driver.find_element(By.CSS_SELECTOR, '#page-main button.global-header__content')
     hover_element.click()
